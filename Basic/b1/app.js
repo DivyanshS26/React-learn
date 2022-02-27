@@ -113,7 +113,7 @@ ReactDOM.render(<h1 className="header">Hello,This is declarative way</h1>, docum
 
 */
 // JSX
-const page = (
+/*const page = (
     <div>
         <h1 className = "header"> This is JSX</h1>
         <p>This is paragraph</p>
@@ -129,7 +129,7 @@ const nav = (
             <li>Contact</li>
         </ul>
     </nav>
-)
+)*/
 /*
 This is what jsx looks like a jsObject
 {$$typeof: Symbol(react.element), type: 'div', key: null, ref: null, props: {…}, …}
@@ -157,3 +157,32 @@ ReactDOM.render(
 
 )
 */
+
+function App(){
+  const firstname = "david";
+  const lastname = "villa";
+  const date = new Date();
+  const hours = date.getHours();
+  
+  let timeOfDay;
+
+  if(hours < 12){
+    timeOfDay = 'Morning';
+  }else if(hours >= 12 && hours < 17){
+    timeOfDay = 'Afternoon';
+  }else if(hours >= 17 && hours < 20){
+    timeOfDay = 'Evening'
+  }else{
+    timeOfDay = 'Night'
+  }
+
+
+  return(
+    <div>
+      <h1>Good {timeOfDay}!</h1>
+      <h1>Hello {firstname} {lastname} !</h1>
+    </div>
+  )
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));
