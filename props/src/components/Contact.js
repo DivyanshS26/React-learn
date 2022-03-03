@@ -1,17 +1,17 @@
 import React from "react";
 
-const Contact = (props) => {
+const Contact = ({ img, name, phone, eml }) => {
   return (
     <div className="contact-card">
-      <img src={props.img} alt=""/>
-      <h3>{props.name}</h3>
+      <img src={img} alt="" />
+      <h3>{name}</h3>
       <div className="info-group">
         {/* <img src="./images/phone-icon.png" /> */}
-        <p>{props.phone}</p>
+        <p>{phone}</p>
       </div>
       <div className="info-group">
         {/* <img src="./images/mail-icon.png" /> */}
-        <p>{props.eml}</p>
+        <p>{eml}</p>
       </div>
     </div>
   );
