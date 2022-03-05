@@ -1,10 +1,9 @@
 import React from 'react'
-import abnb from './images/airbnb 1.png'
 
 const Navbar = () => {
   return (
     <nav className='nav'>
-        <img src={abnb} />
+        <img src={require("./images/airbnb 1.png")} />
     </nav>
   )
 }

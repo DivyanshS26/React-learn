@@ -2,21 +2,26 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Card from "./components/Card";
-import katimg from "./components/images/image 12.png";
+import Data from "./Data";
 
 // <Hero />
 function App() {
+  const DataElements = Data.map((data) => {
+    return (
+      <Card
+        title={data.title}
+        img={data.coverImg}
+        rating={data.stats.rating}
+        reviewCount={data.stats.reviewCount}
+        location={data.location}
+        price={data.price}
+      />
+    );
+  });
   return (
     <div className="App">
       <Navbar />
-      <Card
-        img={katimg}
-        rating="5.0"
-        reviewCount={6}
-        country="USA"
-        title="Life Lessons with Katie Zefferson"
-        price={136}
-      />
+      {DataElements}
     </div>
   );
 }
