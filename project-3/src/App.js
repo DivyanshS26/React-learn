@@ -7,21 +7,12 @@ import Data from "./Data";
 // <Hero />
 function App() {
   const DataElements = Data.map((data) => {
-    return (
-      <Card
-        title={data.title}
-        img={data.coverImg}
-        rating={data.stats.rating}
-        reviewCount={data.stats.reviewCount}
-        location={data.location}
-        price={data.price}
-      />
-    );
+    return <Card key={data.id} {...data} />;
   });
   return (
     <div className="App">
       <Navbar />
-      {DataElements}
+      <section className="crd-list">{DataElements}</section>
     </div>
   );
 }
