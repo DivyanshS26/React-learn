@@ -21,14 +21,81 @@ body {
   letter-spacing: -0.075em;
 }
 
-.section{
+section {
   padding: 20px;
 }
 
-.bold{
+.bold {
   font-weight: bold;
 }
 
-.gray{
+.gray {
   color: grey;
+}
+
+.crd {
+  width: 80vw;
+  height: 45vh;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.crd-img {
+  width: 20%;
+  border-radius: 3px;
+  margin-right: 30px;
+}
+
+.crd-body {
+  margin-top: 20px;
+  align-items: center;
+  overflow: auto;
+}
+
+.crd-loc {
+  display: flex;
+  align-items: center;
+}
+.crd-loc img {
+  width: 12px;
+  margin-right: 4px;
+}
+
+.crd-loc a {
+  margin-left: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  text-decoration: none;
+  text-decoration-line: underline;
+  color: #918e9b;
+}
+
+.crd-loc h3 {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0.17em;
+  color: #2b283a;
+}
+
+.crd h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+  color: #2b283a;
+}
+
+.crd span{
+  margin-bottom: 9px;
+}
+
+.crd p {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  color: #2b283a;
 }

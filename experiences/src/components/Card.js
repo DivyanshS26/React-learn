@@ -2,25 +2,24 @@ import React from "react";
 import goa from "./Images/Goa.jpg";
 import path from "./Images/Fill 219.png";
 
-const Card = () => {
+const Card = (props) => {
   return (
-    <section>
-      <img src={goa} />
-      <div className="bdy">
-        <img src={path} />
-        <h3>Goa</h3>
-        <a href="">view on google maps</a>
-        <h1>Goa</h1>
+    <div className="crd">
+      <img className="crd-img" src={require(`./Images/${props.imageUrl}`)} />
+      <div className="crd-body">
+        <div className="crd-loc">
+          <img src={path} />
+          <h3>{props.location}</h3>
+          <a href={props.googleMapsUrl}>view on google maps</a>
+        </div>
+        <h1 className="bold">{props.title}</h1>
+        <span className="bold">{props.startDate} - </span>
+        <span className="bold">{props.endDate} </span>
+        <p>
+          {props.description}
+        </p>
       </div>
-      <span>9 Nov, 2020 - </span>
-      <span>13 Nov, 2020 </span>
-      <p>
-        Goa is a state in western India with coastlines stretching along the
-        Arabian Sea. Its long history as a Portuguese colony prior to 1961 is
-        evident in its preserved 17th-century churches and the area's tropical
-        spice plantations.
-      </p>
-    </section>
+    </div>
   );
 };
 
