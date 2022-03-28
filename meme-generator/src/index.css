@@ -69,6 +69,12 @@ main{
   cursor: pointer;
 }
 
+.img{
+  margin-top: 35px;
+  width: 100%;
+  border-radius: 5px;
+}
+
 /* .form{
   display: flex;
   flex-direction: column;
