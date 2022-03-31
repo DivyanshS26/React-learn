@@ -164,32 +164,53 @@ body {
 }
 
 */
-
+/* object state */
 body {
-    background-color: #70B85D;
-    color: white;
-    padding: 20px;
-    font-family: 'Karla', sans-serif;
-    font-size: 1.3rem;
+    background-color: whitesmoke;
+    margin: 0;
+    font-family: "Inter", sans-serif;
 }
 
-button {
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 200px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    height: 350px;
+    box-shadow: 5px 5px 5px 1px rgba(120,120,120,0.44);
+    -webkit-box-shadow: 5px 5px 5px 1px rgba(120,120,120,0.44);
+    -moz-box-shadow: 5px 5px 5px 1px rgba(120,120,120,0.44);
+}
+
+.card--image {
     width: 100%;
-    background-color: transparent;
-    padding: 1rem;
-    color: white;
-    border: 2px solid white;
-    border-radius: 50px;
+    padding: 10%;
+    padding-bottom: 0;
+}
+
+.card--name {
+    margin-block: 13px;
+    color: #333333;
+}
+
+.card--info {
+    padding: 10px;
+}
+
+.card--favorite {
+    width: 25px;
     cursor: pointer;
-    font-family: 'Karla', sans-serif;
-    margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: #FFFEF1;
-    color: #2C5E2E;
+.card--contact {
+    font-size: 0.75rem;
+    color: gray;
+    margin-block: 7px;
 }
 
-button:focus {
-    outline: 0;
-} 

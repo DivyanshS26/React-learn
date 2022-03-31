@@ -129,6 +129,7 @@ const nav = (
         </ul>
     </nav>
 )*/
+
 /*
 This is what jsx looks like a jsObject
 {$$typeof: Symbol(react.element), type: 'div', key: null, ref: null, props: {…}, …}
@@ -340,7 +341,7 @@ function App() {
       </div>
   )
 }
-*/
+
 //Things 2
 function App(){
   
@@ -360,6 +361,59 @@ function App(){
     </div>
   )
 }
+*/
 
+// https://scrimba.com/scrim/co56242b396d2d1ac589d4110
+// contact wala app with star component alag hai
+
+function App() {
+  const [contact, setContact] = React.useState({
+    firstName: "John",
+    lastName: "Shelby",
+    phone: "+1 (719) 555-1212",
+    email: "itsmyrealname@example.com",
+    isFavorite: false,
+  });
+  /**
+   * Challenge: Fill in the values in the markup
+   * using the properties of our state object above
+   * (Ignore `isFavorite` for now)
+   */
+
+   let starIcon = contact.isFavorite ? "star-filled.png" : "star-empty.png"
+
+   function toggleFavorite() {
+    setContact(prevContact => {
+      return ({
+        ...prevContact,
+        isFavorite : !prevContact.isFavorite
+      }
+      )
+    })
+  }
+
+  return (
+    <main>
+      <article className="card">
+        <img
+          src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png"
+          className="card--image"
+        />
+        <div className="card--info">
+          <img
+            src={`./images/${starIcon}`}
+            className="card--favorite"
+            onClick={toggleFavorite}
+          />
+          <h2 className="card--name">
+            {contact.firstName} {contact.lastName}
+          </h2>
+          <p className="card--contact">{contact.phone}</p>
+          <p className="card--contact">{contact.email}</p>
+        </div>
+      </article>
+    </main>
+  );
+}
 
 ReactDOM.render(<App />, document.getElementById("root"));
