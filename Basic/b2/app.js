@@ -47,28 +47,13 @@ larger/greater than the individual pieces.
 
 //--------------------------------components
 
-import Header from "./Header"
-import MainContent from "./MainContent";
-import Footer from "./Footer";
+// import Header from "./Header"
+// import MainContent from "./MainContent";
+// import Footer from "./Footer";
 
 
 
 
-function Temp() {
-  return (
-    <div>
-      <Header />
-      <MainContent />
-      <Footer />
-    </div>
-  );
-}
-
-ReactDOM.render(
-  <Temp />,
-
-  document.getElementById("root")
-);
 /*
 1. What is a React component?
 A function that returns React elements. (UI)
@@ -147,3 +132,21 @@ const paragraphs = pokemon.map(mon => `<p>${mon}</p>`)
 console.log(paragraphs)
 
 */
+// Making API calls
+
+function App() {
+
+    const [starWar, setStarWar] = React.useState({})
+    fetch("https://swapi.dev/api/people/1")
+        .then(res => res.json())
+        .then(data => console.log(data))
+        // .then(data => setStarWar(data))  this line renders infinitely bcoz it runs first
+
+    return (
+      <div>
+          <pre>{JSON.stringify(starWar, null, 2)}</pre>
+      </div>
+    );
+  }
+  
+  ReactDOM.render( <App />,document.getElementById("root"));
