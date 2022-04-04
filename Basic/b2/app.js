@@ -137,16 +137,54 @@ console.log(paragraphs)
 function App() {
 
     const [starWar, setStarWar] = React.useState({})
-    fetch("https://swapi.dev/api/people/1")
+    const [count, setCount] = React.useState(1);
+    console.log("component rendered");
+
+    React.useEffect(function() {
+        console.log("Effect Function Ran");
+        fetch(`https://swapi.dev/api/people/${count}`)
         .then(res => res.json())
-        .then(data => console.log(data))
-        // .then(data => setStarWar(data))  this line renders infinitely bcoz it runs first
+        .then(data => setStarWar(data))  //this line renders infinitely bcoz it runs first
+    }, [count])
 
     return (
       <div>
+          <h1>The Count is {count}</h1>
+          <button onClick={() => setCount(prevCount => prevCount + 1)} >Get Next Character</button>
           <pre>{JSON.stringify(starWar, null, 2)}</pre>
       </div>
     );
   }
   
   ReactDOM.render( <App />,document.getElementById("root"));
+
+  /*
+  1. What is a "side effect" in React? What are some examples?
+- Any code that affects an outside system.
+- local storage, API, websockets, two states to keep in sync
+
+
+2. What is NOT a "side effect" in React? Examples?
+- Anything that React is in charge of.
+- Maintaining state, keeping the UI in sync with the data, 
+  render DOM elements
+
+
+3. When does React run your useEffect function? When does it NOT run
+   the effect function?
+- As soon as the component loads (first render)
+- On every re-render of the component (assuming no dependencies array)
+- Will NOT run the effect when the values of the dependencies in the
+  array stay the same between renders
+
+
+4. How would you explain what the "dependecies array" is?
+- Second paramter to the useEffect function
+- A way for React to know whether it should re-run the effect function
+*/  
+
+
+//----------------Watch Width----------------------------------------------------------------------
+
+
+// https://scrimba.com/scrim/co67c4a4184321b1006b79342

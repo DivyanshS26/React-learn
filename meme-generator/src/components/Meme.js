@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import memesData from "../memesData";
+import React, { useState, useEffect } from "react";
 
 const Meme = () => {
   const [meme, setMeme] = useState({
@@ -7,8 +6,33 @@ const Meme = () => {
     bottomText: "",
     randomImage: "http://i.imgflip.com/1bij.jpg",
   });
+  
+  const [allMeme, setAllMeme] = useState([]);
 
-  const [allMemeImage, setAllMemeImage] = useState(memesData);
+  /**
+    useEffect takes a function as its parameter. If that function
+    returns something, it needs to be a cleanup function. Otherwise,
+    it should return nothing. If we make it an async function, it
+    automatically retuns a promise instead of a function or nothing.
+    Therefore, if you want to use async operations inside of useEffect,
+    you need to define the function separately inside of the callback
+    function, as seen below:
+    */
+
+
+  useEffect(() => {
+
+    // async function getMeme(){
+    //   fetch("https://api.imgflip.com/get_memes")
+    //   const data = await res.json()
+    //   setAllMeme(data.data.memes)
+    // }
+    // getMeme()
+
+    fetch("https://api.imgflip.com/get_memes")
+      .then(res => res.json())
+      .then(elements => setAllMeme(elements.data.memes))
+  }, [])
 
   function handleClick(e){
     const {name, value} = e.target
@@ -18,16 +42,14 @@ const Meme = () => {
     }))
   }
   function getImage() {
-    const memesArray = allMemeImage.data.memes;
-    const randomNumber = Math.floor(Math.random() * memesArray.length);
+    const randomNumber = Math.floor(Math.random() * allMeme.length);
     // const url = memesArray[randomNumber].url;
     // // console.log(memesData.data.memes[Math.floor(Math.random() * memesData.data.memes.length)].url);
-    const url = allMemeImage.data.memes[randomNumber].url;
+    const url = allMeme[randomNumber].url;
     setMeme((prevMeme) => ({
       ...prevMeme,
       randomImage: url,
     }));
-    // console.log(allMemeImage.data.memes[randomNumber].url);
   }
 
   return (
