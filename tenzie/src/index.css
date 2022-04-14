@@ -5,22 +5,24 @@
 body {
   margin: 0;
   background: #0b2434;
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
 }
 
 main {
   background: #f5f5f5;
   width: 80vw;
-  height: 75vh;
+  height: 90vh;
   margin: 30px auto;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 }
 
 .die {
+  padding: 4px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   font-family: "Karla";
@@ -28,9 +30,6 @@ main {
   font-weight: 700;
   font-size: 21.4254px;
   line-height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 50px;
   height: 50px;
   cursor: pointer;
@@ -43,7 +42,7 @@ main {
 }
 
 .instructions {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   margin-top: 0;
   text-align: center;
@@ -56,14 +55,103 @@ main {
   gap: 20px;
 }
 
-button{
-  margin-top: 30px;
+button {
+  margin-top: 20px;
   padding: 15px 30px;
   border-style: none;
   color: white;
-  background-color: #5035FF;
+  background-color: #5035ff;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1.2rem;
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
 }
+
+.roll-count{
+  align-self: flex-end;
+  margin-right: 20px;
+}
+.roll-count span{
+  font-size: 1.5rem;
+}
+
+.timer{
+  align-self: flex-end;
+  margin-right: 20px;
+}
+
+.timer h2{
+  margin-top: 1px;
+}
+
+.best-time{
+  align-self: flex-start;
+  margin-left: 10px;
+  max-height: 5px;
+}
+
+/* dots styling for dice */
+
+.dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.oneDot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.twoDot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.twoDot .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.threeDot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.threeDot .dot:nth-of-type(2) {
+  align-self: center;
+}
+
+.threeDot .dot:nth-of-type(3){
+  align-self: flex-end;
+}
+
+.fourDot{
+  display: grid;
+  grid-template-columns: repeat(2, 33px);
+  row-gap: 20px;
+}
+
+.fiveDot{
+  display: grid;
+  grid-template-columns: repeat(3, 16px);
+  row-gap: 5px;
+}
+
+.fiveDot .dot:nth-of-type(2){
+  margin-top: 15px;
+}
+
+.fiveDot .dot:nth-of-type(5){
+  margin-left: 16px;
+}
+
+.sixDot{
+  display: grid;
+  grid-template-columns: repeat(2, 33px);
+  row-gap: 5px;
+}
+
+
