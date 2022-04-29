@@ -8,10 +8,8 @@ body {
 
 main {
   padding: 20px;
-  background-color: #f5f7fb;
   background: url(./components/images/blobs.png) left bottom no-repeat,
-    url(./components/images/blobs\ 2.png) right top no-repeat;
-  height: 100vh;
+    url(./components/images/blobs\ 2.png) #f5f7fb right top no-repeat;
   display: flex;
   justify-content: center;
 }
@@ -49,5 +47,56 @@ main {
   font-weight: 500;
   font-size: 16px;
   text-align: center;
+  cursor: pointer;
+}
+
+.questions {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.questions h2 {
+  font-weight: 700;
+  font-size: 22px;
+  color: #293264;
+}
+
+.option-buttons {
+  border: 1px solid #293264;
+  border-radius: 10px;
+  padding-inline: 15px;
+  padding-block: 7px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 12px;
+  text-align: center;
+  color: #293264;
+  margin-right: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.line {
+  border-top: 0.794239px solid #dbdef0;
+}
+
+.check-button {
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  background: #4d5b9e;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 12px;
+  text-align: center;
+  color: #f5f7fb;
+  width: 170px;
+  align-self: center;
+  margin-top: 20px;
   cursor: pointer;
 }

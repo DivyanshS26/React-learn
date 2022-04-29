@@ -8,11 +8,13 @@ function App() {
   function startToggle(){
     setStartQuiz(true)
   }
-
+  const styles = {
+    height : !startQuiz ? "100vh" : "100%" 
+  }
   return (
-    <main>
+    <main style={styles}>
       {!startQuiz && <Start startToggle={startToggle} />}
-      {startQuiz && <Questions />}
+      {startQuiz && <Questions startQuiz = {startQuiz} />}
     </main>
   );
 }
