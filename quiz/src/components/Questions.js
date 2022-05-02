@@ -7,6 +7,8 @@ const Questions = (props) => {
   const [question, setQuestion] = useState([]);
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
+  const [checker, setChecker] = useState([]);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
@@ -28,31 +30,61 @@ const Questions = (props) => {
       }
       return [answer];
     });
-    
   }, [question]);
 
   useEffect(() => {
     setSelected((select) => {
       let answer = [];
       for (let i = 0; i < question.length; i++) {
-        var obj = {}
+        var obj = {};
         obj[decode(question[i].correct_answer)] = false;
         obj[decode(question[i].incorrect_answers[0])] = false;
         obj[decode(question[i].incorrect_answers[1])] = false;
         obj[decode(question[i].incorrect_answers[2])] = false;
         answer.push(obj);
       }
-      return answer
+      return answer;
+    });
+  }, [question]);
+
+  function checking(){
+    setChecker(chk => {
+      let arr = []
+      for(let i = 0; i < selected.length; i++){
+        const keys = Object.keys(selected[i])
+        arr.push(keys.filter(key => selected[i][key]))
+      }
+      return arr
     })
-  }, [question])
-
-  function optionSelect(event, i){
-    const key = event.target.value.replace(/^["'](.+(?=["']$))["']$/, '$1')
-    
-    console.log(selected[i]);
+    for(let i = 0; i < question.length; i++){
+      if(question[i].correct_answer === checker[i]){
+        setScore(prevScore => prevScore + 1)
+      }
+    }
   }
+  console.log(checker,score);
 
-  if(typeof options[0] !== 'undefined' && options[0].length > 0){
+  function optionSelect(event, i) {
+    const key = event.target.value;
+    setSelected((select) => {
+      let arr = [];
+      for (let j = 0; j < selected.length; j++) {
+        if (j === i) {
+          Object.keys(selected[i]).forEach((v) => (selected[i][v] = false));
+          let obj = {};
+          obj[key] = !selected[i][key];
+          Object.assign(selected[i], obj);
+          arr.push(selected[i]);
+        } else {
+          arr.push({
+            ...selected[j],
+          });
+        }
+      }
+      return arr;
+    });
+  }
+  if (typeof options[0] !== "undefined" && options[0].length > 0) {
     var trivia = question.map((data, i) => {
       return (
         <div key={uuidv4()}>
@@ -61,18 +93,19 @@ const Questions = (props) => {
             option={options[0][i]}
             index={i}
             select={optionSelect}
+            pos={props.pos[i]}
+            selected={selected[i]}
           />
           <hr className="line" />
         </div>
       );
     });
   }
-  // console.log(options[0][1]);
 
   return (
     <div className="questions">
       {trivia}
-      <button className="check-button">Check Answers</button>
+      <button className="check-button" onClick={checking}>Check Answers</button>
     </div>
   );
 };
@@ -113,7 +146,7 @@ export default Questions;
 
 // const pos = randomPos();
 
-{
+
   /* <button
           className="option-buttons"
           id="1"
@@ -146,4 +179,4 @@ export default Questions;
         >
           {answers[pos[3]]}
         </button> */
-}
+
