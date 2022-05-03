@@ -8,7 +8,8 @@ const Questions = (props) => {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
   const [checker, setChecker] = useState([]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(-1);
+  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
@@ -47,23 +48,33 @@ const Questions = (props) => {
     });
   }, [question]);
 
-  function checking(){
-    setChecker(chk => {
-      let arr = []
-      for(let i = 0; i < selected.length; i++){
-        const keys = Object.keys(selected[i])
-        arr.push(keys.filter(key => selected[i][key]))
+  function checking() {
+    setChecker((chk) => {
+      let arr = [];
+      for (let i = 0; i < selected.length; i++) {
+        const keys = Object.keys(selected[i]);
+        arr.push(keys.filter((key) => selected[i][key]));
       }
-      return arr
-    })
-    for(let i = 0; i < question.length; i++){
-      if(question[i].correct_answer === checker[i]){
-        setScore(prevScore => prevScore + 1)
+      return arr;
+    });
+    console.log("check");
+  }
+  useEffect(() => {
+    if (typeof checker !== undefined && checker.length !== 0) {
+      setScore(0);
+      for (let i = 0; i < 5; i++) {
+        if (checker[i][0] === question[i].correct_answer) {
+          setScore((prevScore) => prevScore + 1);
+        }
       }
     }
-  }
-  console.log(checker,score);
-
+  }, [checker]);
+  useEffect(() => {
+    if (score !== -1) {
+      console.log(score);
+      setDisplay(true);
+    }
+  },[score])
   function optionSelect(event, i) {
     const key = event.target.value;
     setSelected((select) => {
@@ -105,7 +116,13 @@ const Questions = (props) => {
   return (
     <div className="questions">
       {trivia}
-      <button className="check-button" onClick={checking}>Check Answers</button>
+      {!display && <button className="check-button" onClick={checking}>
+        Check Answers
+      </button>}
+      {display && <div className="score-diplay">
+        <h2>You scored {score}/5 answers</h2>
+        <button>Play Again</button>
+      </div>}
     </div>
   );
 };
@@ -146,8 +163,7 @@ export default Questions;
 
 // const pos = randomPos();
 
-
-  /* <button
+/* <button
           className="option-buttons"
           id="1"
           value={decode(answers[pos[0]])}
@@ -179,4 +195,3 @@ export default Questions;
         >
           {answers[pos[3]]}
         </button> */
-

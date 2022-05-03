@@ -99,3 +99,8 @@ main {
   margin-top: 20px;
   cursor: pointer;
 }
+
+.score-display{
+  display: grid;
+  grid-template-columns: auto;
+}
