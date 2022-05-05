@@ -10,12 +10,15 @@ const Questions = (props) => {
   const [checker, setChecker] = useState([]);
   const [score, setScore] = useState(-1);
   const [display, setDisplay] = useState(false);
+  const [replay, setReplay] = useState(props.startQuiz)
+  const [chk, setChk] = useState([]);
+  const [ansShow, setAnsShow] = useState(false);
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then((res) => res.json())
       .then((data) => setQuestion(data.results));
-  }, [props.startQuiz]);
+  }, [replay]);
 
   useEffect(() => {
     setOptions((option) => {
@@ -57,16 +60,23 @@ const Questions = (props) => {
       }
       return arr;
     });
+    setDisplay(true)
+    setAnsShow(true);
     console.log("check");
   }
   useEffect(() => {
     if (typeof checker !== undefined && checker.length !== 0) {
       setScore(0);
+      let arr = [];
       for (let i = 0; i < 5; i++) {
         if (checker[i][0] === question[i].correct_answer) {
           setScore((prevScore) => prevScore + 1);
+          arr.push(true);
+        }else{
+          arr.push(false);
         }
       }
+      setChk(arr)
     }
   }, [checker]);
   useEffect(() => {
@@ -75,6 +85,13 @@ const Questions = (props) => {
       setDisplay(true);
     }
   },[score])
+
+  function playAgain(){
+    setDisplay(false)
+    setReplay(prev => !prev)
+    setAnsShow(false)
+  }
+
   function optionSelect(event, i) {
     const key = event.target.value;
     setSelected((select) => {
@@ -106,6 +123,8 @@ const Questions = (props) => {
             select={optionSelect}
             pos={props.pos[i]}
             selected={selected[i]}
+            chk = {chk[i]}
+            ans = {ansShow}
           />
           <hr className="line" />
         </div>
@@ -119,9 +138,9 @@ const Questions = (props) => {
       {!display && <button className="check-button" onClick={checking}>
         Check Answers
       </button>}
-      {display && <div className="score-diplay">
-        <h2>You scored {score}/5 answers</h2>
-        <button>Play Again</button>
+      {display && <div className="score-display">
+        <h2>You scored {score}/5 correct answers</h2>
+        <button onClick={playAgain}>Play Again</button>
       </div>}
     </div>
   );

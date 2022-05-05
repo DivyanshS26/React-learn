@@ -72,7 +72,6 @@ main {
   font-size: 16px;
   line-height: 12px;
   text-align: center;
-  color: #293264;
   margin-right: 12px;
   margin-bottom: 10px;
   cursor: pointer;
@@ -81,6 +80,7 @@ main {
 .line {
   border-top: 0.794239px solid #dbdef0;
 }
+
 
 .check-button {
   border: none;
@@ -101,6 +101,23 @@ main {
 }
 
 .score-display{
-  display: grid;
-  grid-template-columns: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.score-display button{
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  background: #4d5b9e;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  color: #f5f7fb;
+  width: 170px;
+  align-self: center;
+  cursor: pointer;
 }
